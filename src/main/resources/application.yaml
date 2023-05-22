@@ -1,0 +1,37 @@
+spring:
+  jms:
+    template:
+      default-destination: example-test-queue
+  artemis:
+    mode: embedded
+    embedded:
+      enabled: true
+custom:
+  messaging:
+    servicebus:
+      messaging1:
+#        uri: tcp://localhost:61616
+        uri: amqp://localhost:61616
+#        uri: amqp://localhost:5672
+        user:
+        password:
+      messaging2:
+#        uri: tcp://localhost:61616
+        uri: amqp://localhost:61616
+#        uri: amqp://localhost:5672
+        user:
+        password:
+
+logging:
+  level:
+    ROOT: INFO
+    org:
+      apache:
+        activemq:
+#          artemis:
+#            core:
+#              client: DEBUG
+#              server: TRACE
+#          audit:
+#            base: TRACE
+#            message: TRACE

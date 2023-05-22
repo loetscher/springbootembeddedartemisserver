@@ -1,0 +1,32 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.example.messaging'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-artemis'
+
+  //start embedded activemq dependencies
+  implementation 'org.apache.activemq:artemis-jms-server:2.28.0'
+  implementation 'org.apache.activemq:artemis-amqp-protocol:2.26.0'
+  implementation 'org.apache.activemq:activemq-client-jakarta:5.18.1'
+  implementation 'org.apache.qpid:qpid-jms-client:2.0.0'
+  implementation 'io.netty:netty-all:4.1.92.Final'
+  //end embedded activemq dependencies
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
