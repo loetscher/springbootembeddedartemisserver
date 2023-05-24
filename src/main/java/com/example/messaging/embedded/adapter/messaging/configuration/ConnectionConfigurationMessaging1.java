@@ -1,7 +1,6 @@
 package com.example.messaging.embedded.adapter.messaging.configuration;
 
 import jakarta.jms.ConnectionFactory;
-import jakarta.jms.JMSException;
 import org.apache.qpid.jms.JmsConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -42,17 +41,22 @@ public class ConnectionConfigurationMessaging1 {
 
 //  @Bean
 //  @Primary
-//  public ConnectionFactory jmsMessaging1Connection() throws JMSException {
+//  public ConnectionFactory jmsMessaging1Connection() {
+//    //    // switch protocol to tcp:// in application.yaml if this factory is used
 //    final var connection = new ActiveMQJMSConnectionFactory();
-//    connection.setBrokerURL(messaging1Uri);
-//    connection.setUser(messaging1User);
-//    connection.setPassword(messaging1Password);
+//    try {
+//      connection.setBrokerURL(messaging1Uri);
+//      connection.setUser(messaging1User);
+//      connection.setPassword(messaging1Password);
+//    } catch (JMSException e) {
+//      throw new RuntimeException(e);
+//    }
 //    return connection;
 //  }
 
   @Bean
   @Primary
-  public JmsTemplate jmsTemplateMessaging1(){
+  public JmsTemplate jmsTemplateMessaging1() {
     final var temp = new JmsTemplate();
     temp.setConnectionFactory(jmsMessaging1Connection());
     return temp;

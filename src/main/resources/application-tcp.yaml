@@ -1,7 +1,0 @@
-custom:
-  messaging:
-    servicebus:
-      messaging1:
-        uri: tcp://localhost:61616
-      messaging2:
-        uri: tcp://localhost:61616

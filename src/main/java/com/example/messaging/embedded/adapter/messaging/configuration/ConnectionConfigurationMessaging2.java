@@ -1,12 +1,10 @@
 package com.example.messaging.embedded.adapter.messaging.configuration;
 
 import jakarta.jms.ConnectionFactory;
-import jakarta.jms.JMSException;
 import org.apache.qpid.jms.JmsConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
@@ -21,7 +19,7 @@ public class ConnectionConfigurationMessaging2 {
   private String messaging2Password;
 
   @Bean
-  public DefaultJmsListenerContainerFactory messaging2ContainerFactory() throws JMSException {
+  public DefaultJmsListenerContainerFactory messaging2ContainerFactory() {
     DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
     factory.setConnectionFactory(jmsMessaging2Connection());
     factory.setSessionTransacted(true);
@@ -40,13 +38,19 @@ public class ConnectionConfigurationMessaging2 {
   }
 
 //  @Bean
-//  public ConnectionFactory jmsMessaging2Connection() throws JMSException {
+//  public ConnectionFactory jmsMessaging2Connection() {
+//    // switch protocol to tcp:// in application.yaml if this factory is used
 //    final var connection = new ActiveMQJMSConnectionFactory();
-//    connection.setBrokerURL(messaging2Uri);
-//    connection.setUser(messaging2User);
-//    connection.setPassword(messaging2Password);
+//    try {
+//      connection.setBrokerURL(messaging2Uri);
+//      connection.setUser(messaging2User);
+//      connection.setPassword(messaging2Password);
+//    } catch (JMSException e) {
+//      throw new RuntimeException(e);
+//    }
 //    return connection;
 //  }
+
   @Bean
   public JmsTemplate jmsTemplateMessaging2() {
     final var temp = new JmsTemplate();
